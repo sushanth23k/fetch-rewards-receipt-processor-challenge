@@ -1,0 +1,14 @@
+# Basic Packages
+pandas
+sshtunnel
+python-dotenv
+
+# Django Connection
+Django>=5.0,<5.1
+django-fernet-fields
+django-allauth[socialaccount]
+djangorestframework
+
+# Database Connection
+mysqlclient
+mysql-connector-python

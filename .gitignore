@@ -1,0 +1,20 @@
+# Created by venv; see https://docs.python.org/3/library/venv.html
+venv/
+
+# Go
+.DS_Store
+
+# Environment Variables
+.env
+
+# Other Files
+bin/
+include/
+lib/
+lib64/
+libexec/
+libx32/
+share/
+
+# Extra Files
+test.py
