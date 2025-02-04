@@ -33,11 +33,179 @@ This web service is an assessment on Backend Engineering, where the goal was to 
 - A wrapper function was created to validate input for both APIs.
 
 ## How to Use
-1. **Set Up Environment**: Create a Python virtual environment and activate it.
-2. **Install Requirements**: Run `pip install -r requirements.txt` to install necessary packages.
-3. **Run Migrations**: Execute `python manage.py migrate --database Mysql` to set up the database.
-4. **Start the Server**: Use `python manage.py runserver` to start the Django development server.
-5. **Access APIs**: Use the provided APIs with the necessary authentication and authorization headers.
+1. **Run Docker**: Build and run the Docker container on your local machine or push it to a cloud Docker registry and run it on a cloud service like EC2.
+2. **Access APIs**: Once the Docker container is running, you will have access to the provided APIs with the necessary authentication and authorization headers.
+
+## API Documentation
+
+### Login:
+
+POST Request:
+URL: http://127.0.0.1:8000/user/_allauth/app/v1/auth/login
+Request Body:
+```json
+{
+"username": "test",
+"password": "sushanth1234"
+}
+```
+Response:
+```json
+{
+    "status": 200,
+    "data": {
+        "user": {
+            "id": 2,
+            "display": "test",
+            "has_usable_password": true,
+            "email": "testuser@example.com",
+            "username": "test"
+        },
+        "methods": [
+            {
+                "method": "password",
+                "at": 1738636764.7377899,
+                "username": "test"
+            }
+        ]
+    },
+    "meta": {
+        "is_authenticated": true,
+        "session_token": "edln59ucnyi2rx5p7ap42ih8s7wa0suf"
+    }
+}
+```
+
+### Logout:
+
+#### POST Request:
+##### URL: http://127.0.0.1:8000/user/_allauth/app/v1/auth/session
+##### Request Header:
+```
+X-Session-Token: edln59ucnyi2rx5p7ap42ih8s7wa0suf
+```
+##### Response:
+```json
+{
+    "status": 401,
+    "data": {
+        "flows": [
+            {
+                "id": "login"
+            },
+            {
+                "id": "signup"
+            }
+        ]
+    },
+    "meta": {
+        "is_authenticated": false
+    }
+}
+```
+
+### Process Receipt (Authenticated, Authorized):
+
+#### POST Request:
+##### URL: http://127.0.0.1:8000/process_receipt_auth/
+##### Request Header:
+```
+X-Session-Token: edln59ucnyi2rx5p7ap42ih8s7wa0suf
+```
+##### Request Body:
+```json
+{
+  "retailer": "M&M Corner Market",
+  "purchaseDate": "2022-03-20",
+  "purchaseTime": "14:33",
+  "items": [
+    {
+      "shortDescription": "Gatorade",
+      "price": "2.25"
+    },{
+      "shortDescription": "Gatorade",
+      "price": "2.25"
+    },{
+      "shortDescription": "Gatorade",
+      "price": "2.25"
+    },{
+      "shortDescription": "Gatorade",
+      "price": "2.25"
+    }
+  ],
+  "total": "9.00"
+}
+```
+##### Response:
+```json
+{
+    "id": "50f60e79-2901-4114-87ae-0e8e3b859d24"
+}
+```
+
+
+### Get Receipt Points (Authenticated, Authorized):
+
+#### GET Request:
+##### URL: http://127.0.0.1:8000/fetch_rewards_receipt_processor/get_receipt_points/{id}/
+##### Request Header:
+```
+X-Session-Token: edln59ucnyi2rx5p7ap42ih8s7wa0suf
+```
+##### Response:
+```json
+{
+    "points": 109
+}
+```
+
+### Process Receipt (Unauthenticated, Unauthorized):
+
+#### POST Request:
+##### URL: http://127.0.0.1:8000/fetch_rewards_receipt_processor/process_receipt/
+##### Request Body:
+```json
+{
+  "retailer": "M&M Corner Market",
+  "purchaseDate": "2022-03-20",
+  "purchaseTime": "14:33",
+  "items": [
+    {
+      "shortDescription": "Gatorade",
+      "price": "2.25"
+    },{
+      "shortDescription": "Gatorade",
+      "price": "2.25"
+    },{
+      "shortDescription": "Gatorade",
+      "price": "2.25"
+    },{
+      "shortDescription": "Gatorade",
+      "price": "2.25"
+    }
+  ],
+  "total": "9.00"
+}
+```
+##### Response:
+```json
+{
+    "id": "50f60e79-2901-4114-87ae-0e8e3b859d24"
+}
+```
+
+
+### Get Receipt Points (Unauthenticated, Unauthorized):
+
+#### GET Request:
+##### URL: http://127.0.0.1:8000/fetch_rewards_receipt_processor/get_receipt_points/{id}/
+##### Response:
+```json
+{
+    "points": 109
+}
+```
+
 
 ## Conclusion
-This web service effectively addresses the provided API requirements while ensuring robust authentication and authorization mechanisms. The architecture is designed for scalability and maintainability, making it suitable for future enhancements and integrations.
+This web service effectively addresses the provided API requirements of receiving a receipt, processing it, and getting the points while ensuring robust authentication and authorization mechanisms. The architecture is designed for scalability and maintainability, making it suitable for future enhancements and integrations.
