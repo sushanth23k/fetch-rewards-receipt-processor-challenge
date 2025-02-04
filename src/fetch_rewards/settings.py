@@ -87,11 +87,6 @@ WSGI_APPLICATION = 'fetch_rewards.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 import os
-print(os.getenv('MYSQL_DATABASE'))
-print(os.getenv('MYSQL_USER'))
-print(os.getenv('MYSQL_PASSWORD'))
-print(os.getenv('MYSQL_HOST'))
-print(os.getenv('MYSQL_PORT'))
 
 DATABASES = {
     'default': {

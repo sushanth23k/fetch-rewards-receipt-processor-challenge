@@ -48,4 +48,7 @@ git add . && git commit -a -m "commit" && git push
 [DataBase Hosting](https://dash.filess.io/#/app/databases/v1/0d150f34-e44d-4a69-bc95-cc510f266e2d)
 
 # Resolving Problems
-[Docker Not working in MacOs](https://stackoverflow.com/questions/79340672 com-docker-socket-was-not-opened-because-it-contains-malware)
+[Docker Not working in MacOs](https://stackoverflow.com/questions/79340672)
+
+# Allauth Documentation
+[Allauth Documentation](https://allauth.org/docs/draft-api/#tag/Configuration)
