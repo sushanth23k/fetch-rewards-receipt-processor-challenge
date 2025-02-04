@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path, include   
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path("fetch_rewards_user/", include('fetch_rewards_user.urls')),
-    path("fetch_rewards_receipt_processor/", include('fetch_rewards_receipt_processor.urls')),
+    # path('admin/', admin.site.urls),
+    path("user/", include('fetch_rewards_user.urls')),
+    path("", include('fetch_rewards_receipt_processor.urls')),
 ]

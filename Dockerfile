@@ -16,14 +16,8 @@ RUN pip install -r requirements.txt
 # Copy project files
 COPY . .
 
-# Set environment variables
-ENV PYTHONUNBUFFERED=1
-
 # Expose port
 EXPOSE 8000
 
-# Move to src directory where manage.py is located
-WORKDIR /app/src
-
-# Run gunicorn for production
-CMD ["gunicorn", "fetch_rewards.wsgi:application", "--bind", "0.0.0.0:8000"]
+# Run gunicorn for production with custom configuration and enable logging
+CMD ["gunicorn", "fetch_rewards.wsgi:application", "--config", "gunicorn_config.py", "--log-level", "info"]

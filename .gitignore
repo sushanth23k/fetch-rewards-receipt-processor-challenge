@@ -4,9 +4,6 @@ venv/
 # Go
 .DS_Store
 
-# Environment Variables
-.env
-
 # Other Files
 bin/
 include/
@@ -15,6 +12,8 @@ lib64/
 libexec/
 libx32/
 share/
+__pycache__/
 
 # Extra Files
+*.test.py
 test.py

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import logging
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -86,6 +87,11 @@ WSGI_APPLICATION = 'fetch_rewards.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 import os
+print(os.getenv('MYSQL_DATABASE'))
+print(os.getenv('MYSQL_USER'))
+print(os.getenv('MYSQL_PASSWORD'))
+print(os.getenv('MYSQL_HOST'))
+print(os.getenv('MYSQL_PORT'))
 
 DATABASES = {
     'default': {
@@ -130,8 +136,8 @@ AUTHENTICATION_BACKENDS = [
 
 # Djnago Allauth Config
 LOGIN_REDIRECT_URL = "/"
-ACCOUNT_AUTHENTICATION_METHOD = "email"
-ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_AUTHENTICATION_METHOD = "username"
+ACCOUNT_USERNAME_REQUIRED = True
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/

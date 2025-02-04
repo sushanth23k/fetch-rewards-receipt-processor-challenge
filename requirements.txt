@@ -12,3 +12,6 @@ djangorestframework
 # Database Connection
 mysqlclient
 mysql-connector-python
+
+# Gunicorn
+gunicorn
