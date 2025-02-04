@@ -35,6 +35,19 @@ This web service is an assessment on Backend Engineering, where the goal was to 
 
 ## How to Use
 1. **Run Docker**: Build and run the Docker container on your local machine or push it to a cloud Docker registry and run it on a cloud service like EC2(AWS) or Cloud run(GCP). For scalling we can use AWS ECS.
+
+### Run Docker Locally:
+#### Windows/Linux:
+```bash
+docker build -t fetch-rewards-app .
+docker run -p 8000:8000 fetch-rewards-app
+```
+#### MacOs:
+```bash
+docker build --platform linux/amd64 -t fetch-rewards-app .
+docker run -p 8000:8000 fetch-rewards-app
+```
+
 2. **Access APIs**: Once the Docker container is running, you will have access to the provided APIs with the necessary authentication and authorization headers.
 
 ## API Documentation
