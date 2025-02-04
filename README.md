@@ -6,11 +6,12 @@ This web service is an assessment on Backend Engineering, where the goal was to 
 ## Project Components
 - **Programming Language**: Python was chosen as the primary programming language due to familiarity and ease of use compared to Go.
 - **Framework**: Django Framework was utilized to build a larger, more complex microservice that meets the requirements, rather than opting for a lightweight framework with fewer features.
-- **Authentication**: Django Allauth Rest Framework was implemented for robust authentication, including optional social media integration.
-- **Application Processing**: Gunicorn was used for application processing, managing worker nodes, timeout settings, and port binding.
 - **Containerization**: A Docker container was built to install Python, MySQL, and the necessary packages from `requirements.txt`, and to run the Django server through WSGI, simulating a production environment.
 - **Database**: MySQL was selected as the database for this project, hosted on a free service called "dash.filess.io". The database schema is documented in `DataBaseTables.sql`. 
-  - **Note**: There are limitations with this service, such as the inability to handle multiple simultaneous database calls. This can be mitigated by using more robust database services like Cloud SQL (GCP) or Aurora DB (AWS).
+- **Authentication**: Django Allauth Rest Framework was implemented for robust authentication, including optional social media integration.
+- **Application Processing**: Gunicorn was used for application processing, managing worker nodes, timeout settings, and port binding.
+
+- **Note**: There are limitations with this service, such as the inability to handle multiple simultaneous database calls. This can be mitigated by using more robust database services like Cloud SQL (GCP) or Aurora DB (AWS).
 
 ## Code Base Architecture
 - The main files, including `requirements.txt`, `Dockerfile`, and `gunicorn_config.py`, are located in the root folder.
@@ -33,23 +34,23 @@ This web service is an assessment on Backend Engineering, where the goal was to 
 - A wrapper function was created to validate input for both APIs.
 
 ## How to Use
-1. **Run Docker**: Build and run the Docker container on your local machine or push it to a cloud Docker registry and run it on a cloud service like EC2.
+1. **Run Docker**: Build and run the Docker container on your local machine or push it to a cloud Docker registry and run it on a cloud service like EC2(AWS) or Cloud run(GCP). For scalling we can use AWS ECS.
 2. **Access APIs**: Once the Docker container is running, you will have access to the provided APIs with the necessary authentication and authorization headers.
 
 ## API Documentation
 
 ### Login:
 
-POST Request:
-URL: http://127.0.0.1:8000/user/_allauth/app/v1/auth/login
-Request Body:
+#### POST Request:
+##### URL: /user/_allauth/app/v1/auth/login
+##### Request Body:
 ```json
 {
 "username": "test",
 "password": "sushanth1234"
 }
 ```
-Response:
+##### Response:
 ```json
 {
     "status": 200,
@@ -79,7 +80,7 @@ Response:
 ### Logout:
 
 #### POST Request:
-##### URL: http://127.0.0.1:8000/user/_allauth/app/v1/auth/session
+##### URL: /user/_allauth/app/v1/auth/session
 ##### Request Header:
 ```
 X-Session-Token: edln59ucnyi2rx5p7ap42ih8s7wa0suf
@@ -107,7 +108,7 @@ X-Session-Token: edln59ucnyi2rx5p7ap42ih8s7wa0suf
 ### Process Receipt (Authenticated, Authorized):
 
 #### POST Request:
-##### URL: http://127.0.0.1:8000/process_receipt_auth/
+##### URL: /process_receipt_auth/
 ##### Request Header:
 ```
 X-Session-Token: edln59ucnyi2rx5p7ap42ih8s7wa0suf
@@ -147,7 +148,7 @@ X-Session-Token: edln59ucnyi2rx5p7ap42ih8s7wa0suf
 ### Get Receipt Points (Authenticated, Authorized):
 
 #### GET Request:
-##### URL: http://127.0.0.1:8000/fetch_rewards_receipt_processor/get_receipt_points/{id}/
+##### URL: /get_receipt_points/{id}/
 ##### Request Header:
 ```
 X-Session-Token: edln59ucnyi2rx5p7ap42ih8s7wa0suf
@@ -162,7 +163,7 @@ X-Session-Token: edln59ucnyi2rx5p7ap42ih8s7wa0suf
 ### Process Receipt (Unauthenticated, Unauthorized):
 
 #### POST Request:
-##### URL: http://127.0.0.1:8000/fetch_rewards_receipt_processor/process_receipt/
+##### URL: /process_receipt/
 ##### Request Body:
 ```json
 {
@@ -198,7 +199,7 @@ X-Session-Token: edln59ucnyi2rx5p7ap42ih8s7wa0suf
 ### Get Receipt Points (Unauthenticated, Unauthorized):
 
 #### GET Request:
-##### URL: http://127.0.0.1:8000/fetch_rewards_receipt_processor/get_receipt_points/{id}/
+##### URL: /get_receipt_points/{id}/
 ##### Response:
 ```json
 {

@@ -1,18 +1,17 @@
+## API Documentation
 
-API Documentation:
+### Login:
 
-# Login:
-
-POST Request:
-URL: http://127.0.0.1:8000/user/_allauth/app/v1/auth/login
-Request Body:
+#### POST Request:
+##### URL: /user/_allauth/app/v1/auth/login
+##### Request Body:
 ```json
 {
 "username": "test",
 "password": "sushanth1234"
 }
 ```
-Response:
+##### Response:
 ```json
 {
     "status": 200,
@@ -39,15 +38,15 @@ Response:
 }
 ```
 
-# Logout:
+### Logout:
 
-POST Request:
-URL: http://127.0.0.1:8000/user/_allauth/app/v1/auth/session
-Request Header:
+#### POST Request:
+##### URL: /user/_allauth/app/v1/auth/session
+##### Request Header:
 ```
 X-Session-Token: edln59ucnyi2rx5p7ap42ih8s7wa0suf
 ```
-Response:
+##### Response:
 ```json
 {
     "status": 401,
@@ -67,15 +66,15 @@ Response:
 }
 ```
 
-# Process Receipt (Authenticated, Authorized):
+### Process Receipt (Authenticated, Authorized):
 
-POST Request:
-URL: http://127.0.0.1:8000/process_receipt_auth/
-Request Header:
+#### POST Request:
+##### URL: /process_receipt_auth/
+##### Request Header:
 ```
 X-Session-Token: edln59ucnyi2rx5p7ap42ih8s7wa0suf
 ```
-Request Body:
+##### Request Body:
 ```json
 {
   "retailer": "M&M Corner Market",
@@ -99,7 +98,7 @@ Request Body:
   "total": "9.00"
 }
 ```
-Response:
+##### Response:
 ```json
 {
     "id": "50f60e79-2901-4114-87ae-0e8e3b859d24"
@@ -107,26 +106,26 @@ Response:
 ```
 
 
-# Get Receipt Points (Authenticated, Authorized):
+### Get Receipt Points (Authenticated, Authorized):
 
-GET Request:
-URL: http://127.0.0.1:8000/fetch_rewards_receipt_processor/get_receipt_points/{id}/
-Request Header:
+#### GET Request:
+##### URL: /get_receipt_points/{id}/
+##### Request Header:
 ```
 X-Session-Token: edln59ucnyi2rx5p7ap42ih8s7wa0suf
 ```
-Response:
+##### Response:
 ```json
 {
     "points": 109
 }
 ```
 
-# Process Receipt (Unauthenticated, Unauthorized):
+### Process Receipt (Unauthenticated, Unauthorized):
 
-POST Request:
-URL: http://127.0.0.1:8000/fetch_rewards_receipt_processor/process_receipt/
-Request Body:
+#### POST Request:
+##### URL: /process_receipt/
+##### Request Body:
 ```json
 {
   "retailer": "M&M Corner Market",
@@ -150,7 +149,7 @@ Request Body:
   "total": "9.00"
 }
 ```
-Response:
+##### Response:
 ```json
 {
     "id": "50f60e79-2901-4114-87ae-0e8e3b859d24"
@@ -158,14 +157,13 @@ Response:
 ```
 
 
-# Get Receipt Points (Unauthenticated, Unauthorized):
+### Get Receipt Points (Unauthenticated, Unauthorized):
 
-GET Request:
-URL: http://127.0.0.1:8000/fetch_rewards_receipt_processor/get_receipt_points/{id}/
-Response:
+#### GET Request:
+##### URL: /get_receipt_points/{id}/
+##### Response:
 ```json
 {
     "points": 109
 }
 ```
-
