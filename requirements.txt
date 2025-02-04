@@ -1,17 +1,17 @@
 # Basic Packages
-pandas
-sshtunnel
-python-dotenv
+pandas==2.2.3
+sshtunnel==0.4.0
+python-dotenv==1.0.1
 
 # Django Connection
-Django>=5.0,<5.1
-django-fernet-fields
-django-allauth[socialaccount]
-djangorestframework
+Django==5.0.11
+django-fernet-fields==0.6
+django-allauth==65.3.1
+djangorestframework==3.15.2
 
 # Database Connection
-mysqlclient
-mysql-connector-python
+mysqlclient==2.2.7
+mysql-connector-python==9.2.0
 
 # Gunicorn
-gunicorn
+gunicorn==23.0.0
